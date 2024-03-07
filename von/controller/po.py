@@ -34,6 +34,7 @@ parser.add_argument(
 )
 
 LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
+\usepackage{ctex}
 \usepackage[minimal]{yhmath}
 \usepackage{derivative}
 
@@ -286,4 +287,4 @@ def main(self: object, argv: list[str]):
         with open(filepath, "w") as f:
             print(s, file=f)
         os.chdir(VON_POST_OUTPUT_DIR)
-        os.system("latexmk -pv %s" % filepath)
+        os.system("latexmk -pdflua -e '$pdf_previewer=q[start \"/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe\" %%O %%S]' -pv %s" % filepath)
