@@ -5,6 +5,7 @@ except ModuleNotFoundError:
     pyperclip = None
 else:
     PYPERCLIP_AVAILABLE = True
+    pyperclip.ENCODING = 'cp936'
 
 
 def get_clipboard() -> str:
