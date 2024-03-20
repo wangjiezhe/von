@@ -203,6 +203,16 @@ path Drawing(path g, pen p = defaultpen, arrowbar ar = None) {
 }
 \end{asydef}
 
+\usepackage{tkz-euclide}
+\tikzset {
+  dots/.style={shape=circle, color=#1, fill=#1!70!black, minimum size=2},
+  dots/.default=black,
+  lines/.style={line width=1.2pt, color=#1},
+  lines/.default=black,
+  helplines/.style={line width=1.2pt, color=#1, densely dashed},
+  helplines/.default=green!70!black
+}
+
 \usepackage[headsepline]{scrlayer-scrpage}
 \addtolength{\textheight}{3.14cm}
 \setlength{\footskip}{0.5in}
