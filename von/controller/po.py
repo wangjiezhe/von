@@ -34,7 +34,7 @@ parser.add_argument(
 )
 
 LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
-\usepackage{ctex}
+\usepackage[fontset=founder]{ctex}
 \usepackage[minimal]{yhmath}
 \usepackage{derivative}
 
@@ -117,36 +117,36 @@ LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
     mdframed={style=mdblackbox}
 ]{thmblackbox}
 
-\declaretheorem[style=thmbluebox,name=Theorem]{theorem}
-\declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
-\declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
-\declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
-\declaretheorem[style=thmbluebox,name=Theorem,numbered=no]{theorem*}
-\declaretheorem[style=thmbluebox,name=Lemma,numbered=no]{lemma*}
-\declaretheorem[style=thmbluebox,name=Proposition,numbered=no]{proposition*}
-\declaretheorem[style=thmbluebox,name=Corollary,numbered=no]{corollary*}
+\declaretheorem[style=thmbluebox,name=定理]{theorem}
+\declaretheorem[style=thmbluebox,name=引理,sibling=theorem]{lemma}
+\declaretheorem[style=thmbluebox,name=命题,sibling=theorem]{proposition}
+\declaretheorem[style=thmbluebox,name=推论,sibling=theorem]{corollary}
+\declaretheorem[style=thmbluebox,name=定理,numbered=no]{theorem*}
+\declaretheorem[style=thmbluebox,name=引理,numbered=no]{lemma*}
+\declaretheorem[style=thmbluebox,name=命题,numbered=no]{proposition*}
+\declaretheorem[style=thmbluebox,name=推论,numbered=no]{corollary*}
 
-\declaretheorem[style=thmgreenbox,name=Claim,sibling=theorem]{claim}
-\declaretheorem[style=thmgreenbox,name=Claim,numbered=no]{claim*}
-\declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
-\declaretheorem[style=thmredbox,name=Example,numbered=no]{example*}
-\declaretheorem[style=thmblackbox,name=Remark,sibling=theorem]{remark}
-\declaretheorem[style=thmblackbox,name=Remark,numbered=no]{remark*}
+\declaretheorem[style=thmgreenbox,name=声明,sibling=theorem]{claim}
+\declaretheorem[style=thmgreenbox,name=声明,numbered=no]{claim*}
+\declaretheorem[style=thmredbox,name=例子,sibling=theorem]{example}
+\declaretheorem[style=thmredbox,name=例子,numbered=no]{example*}
+\declaretheorem[style=thmblackbox,name=备注,sibling=theorem]{remark}
+\declaretheorem[style=thmblackbox,name=备注,numbered=no]{remark*}
 
 \theoremstyle{definition}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{fact}[theorem]{Fact}
-\newtheorem{ques}[theorem]{Question}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{problem}[theorem]{Problem}
+\newtheorem{conjecture}[theorem]{猜想}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{fact}[theorem]{事实}
+\newtheorem{ques}[theorem]{问题}
+\newtheorem{exercise}[theorem]{练习}
+\newtheorem{problem}[theorem]{题目}
 
-\newtheorem*{conjecture*}{Conjecture}
-\newtheorem*{definition*}{Definition}
-\newtheorem*{fact*}{Fact}
-\newtheorem*{ques*}{Question}
-\newtheorem*{exercise*}{Exercise}
-\newtheorem*{problem*}{Problem}
+\newtheorem*{conjecture*}{猜想}
+\newtheorem*{definition*}{定义}
+\newtheorem*{fact*}{事实}
+\newtheorem*{ques*}{问题}
+\newtheorem*{exercise*}{练习}
+\newtheorem*{problem*}{题目}
 
 \usepackage{mathtools}
 \usepackage{hyperref}
@@ -266,7 +266,7 @@ def main(self: object, argv: list[str]):
             s += strparse.demacro(problem.bodies[0]) + "\n"
             s += r"\end{problem}" if len(keys) > 1 else r"\end{problem*}"
             if entry.url:
-                s += r"\noindent\emph{Link}: \url{" + entry.url + "}" + "\n"
+                s += r"\noindent\emph{链接}: \url{" + entry.url + "}" + "\n"
             if len(problem.bodies) > 1:
                 s += "\n" + r"\hrulebar" + "\n\n"
                 s += strparse.demacro(problem.bodies[1]) + "\n"
