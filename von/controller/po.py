@@ -126,8 +126,8 @@ LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
 \declaretheorem[style=thmbluebox,name=命题,numbered=no]{proposition*}
 \declaretheorem[style=thmbluebox,name=推论,numbered=no]{corollary*}
 
-\declaretheorem[style=thmgreenbox,name=声明,sibling=theorem]{claim}
-\declaretheorem[style=thmgreenbox,name=声明,numbered=no]{claim*}
+\declaretheorem[style=thmgreenbox,name=结论,sibling=theorem]{claim}
+\declaretheorem[style=thmgreenbox,name=结论,numbered=no]{claim*}
 \declaretheorem[style=thmredbox,name=例子,sibling=theorem]{example}
 \declaretheorem[style=thmredbox,name=例子,numbered=no]{example*}
 \declaretheorem[style=thmblackbox,name=备注,sibling=theorem]{remark}
@@ -246,9 +246,9 @@ def main(self: object, argv: list[str]):
         if entry is not None:
             title = entry.source
         else:
-            title = "Solution"
+            title = "解答"
     else:
-        title = "Solutions"
+        title = "解答"
 
     s = r"\documentclass[11pt]{scrartcl}" + "\n"
     s += LATEX_PREAMBLE.replace("AUTHOR", opts.author).replace("TITLE", title)
