@@ -205,13 +205,77 @@ path Drawing(path g, pen p = defaultpen, arrowbar ar = None) {
 
 \usepackage{tkz-euclide}
 \tikzset {
-  dots/.style={shape=circle, color=#1, fill=#1!70!black, minimum size=2},
+  dots/.style={shape=circle, color=#1!30!black, fill=#1!70!black, minimum size=2},
   dots/.default=black,
-  lines/.style={line width=1.2pt, color=#1},
+  lines/.style={line width=0.8pt, color=#1},
   lines/.default=black,
-  helplines/.style={line width=1.2pt, color=#1, densely dashed},
+  helplines/.style={line width=0.8pt, color=#1, densely dashed},
   helplines/.default=green!70!black
 }
+
+\catcode`。=\active
+\def。{．}
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\let\le=\leqslant
+\let\ge=\geqslant
+\let\leq=\leqslant
+\let\gep=\geqslant
+\mathcode`≤=\leqslant
+\mathcode`≥=\geqslant
+\catcode`≠=\active
+\def≠{\ne}
+\mathcode`△=\triangle
+\mathcode`⊿=\triangle
+\def\Rt{\text{Rt}}
+\newcommand{\degree}{\ensuremath{^\circ}}
+\catcode`°=\active
+\def°{\degree}
+\mathcode`∠=\angle
+\mathcode`⊥=\perp
+\mathcode`∵=\because
+\mathcode`∴=\therefore
+\mathcode`⊙=\odot
+\mathcode`×=\times
+\mathcode`÷=\div
+\mathcode`∞=\infty
+\mathcode`∈=\in
+\mathcode`∩=\cap
+\mathcode`∪=\cup
+\mathcode`Γ=\Gamma
+\mathcode`Δ=\Delta
+\mathcode`Θ=\Theta
+\mathcode`Λ=\Lambda
+\mathcode`Ξ=\Xi
+\mathcode`Π=\Pi
+\mathcode`Σ=\Sigma
+\mathcode`Φ=\Phi
+\mathcode`Ψ=\Psi
+\mathcode`Ω=\Omega
+\mathcode`α=\alpha
+\mathcode`β=\beta
+\mathcode`γ=\gamma
+\mathcode`δ=\delta
+\mathcode`ε=\epsilon
+\mathcode`ζ=\zeta
+\mathcode`η=\eta
+\mathcode`θ=\theta
+\mathcode`ι=\iota
+\mathcode`κ=\kappa
+\mathcode`λ=\lambda
+\mathcode`μ=\mu
+\mathcode`ν=\nu
+\mathcode`ξ=\xi
+\mathcode`π=\pi
+\mathcode`ρ=\rho
+\mathcode`σ=\sigma
+\mathcode`τ=\tau
+\mathcode`υ=\upsilon
+\mathcode`φ=\phi
+\mathcode`χ=\chi
+\mathcode`ψ=\psi
+\mathcode`ω=\omega
+\DeclarePairedDelimiter\abs\lvert\rvert
 
 \usepackage[headsepline]{scrlayer-scrpage}
 \addtolength{\textheight}{3.14cm}
