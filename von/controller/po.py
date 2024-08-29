@@ -1,9 +1,11 @@
 import logging
 import os
+import shutil
 
 from .. import model, strparse, view
 from ..fzf import fzf_choose
-from ..rc import VON_DEFAULT_AUTHOR, VON_POST_OUTPUT_DIR
+from ..puid import inferPUID
+from ..rc import VON_BASE_PATH, VON_DEFAULT_AUTHOR, VON_POST_OUTPUT_DIR
 
 parser = view.Parser(prog="po", description="Prepares a LaTeX file to send to Po-Shen!")
 parser.add_argument("keys", nargs="*", help="The keys of the problem to propose.")
@@ -361,6 +363,16 @@ def main(self: object, argv: list[str]):
         filepath = os.path.join(VON_POST_OUTPUT_DIR, f"{fname}.tex")
         with open(filepath, "w") as f:
             print(s, file=f)
+        tikz_path = os.path.join(VON_BASE_PATH, "tikz")
+        if os.path.exists(tikz_path):
+            dest_path = os.path.join(VON_POST_OUTPUT_DIR, "tikz")
+            if not os.path.exists(dest_path):
+                os.mkdir(dest_path)
+            for file in os.listdir(tikz_path):
+                for key in keys:
+                    puid = inferPUID(key)
+                    if file.startswith(puid) and file.endswith("tkz"):
+                        shutil.copy(os.path.join(tikz_path, file), dest_path)
         os.chdir(VON_POST_OUTPUT_DIR)
         os.system(
             "latexmk -pdflua -e '$pdf_previewer=q[start \"/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe\" %%O %%S]' -pv %s"
