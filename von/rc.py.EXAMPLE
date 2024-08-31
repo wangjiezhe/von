@@ -15,6 +15,9 @@ VON_INDEX_PATH = os.path.join(VON_BASE_PATH, VON_INDEX_NAME)
 VON_CACHE_NAME = "cache"
 VON_CACHE_PATH = os.path.join(VON_BASE_PATH, VON_CACHE_NAME)
 
+# Ignored directories
+VON_IGNORE_DIR = {'.git', '.vscode', 'tikz'}
+
 # Choose an editor
 # On Windows, the following line may work better:
 # EDITOR = r'C:\Windows\vim.bat'

@@ -18,6 +18,7 @@ from .rc import (  # NOQA
     VON_BASE_PATH,
     VON_CACHE_PATH,
     VON_INDEX_PATH,
+    VON_IGNORE_DIR,
 )
 
 OTIS_USED_SOURCES_LIST: list[str] | None
@@ -289,7 +290,8 @@ def makeProblemFromPath(path: str) -> Problem:
 
 def getAllProblems() -> list[Problem]:
     ret: list[Problem] = []
-    for root, _, filenames in os.walk(VON_BASE_PATH):
+    for root, dirs, filenames in os.walk(VON_BASE_PATH, topdown=True):
+        dirs[:] = [d for d in dirs if d not in VON_IGNORE_DIR]
         for fname in filenames:
             if not fname.endswith(".tex"):
                 continue
@@ -354,7 +356,7 @@ def viewDirectory(path: str):
             problem = makeProblemFromPath(abs_item_path)
             assert problem is not None
             problems.append(problem)
-        elif os.path.isdir(abs_item_path):
+        elif os.path.isdir(abs_item_path) and item_path not in VON_IGNORE_DIR:
             dirs.append(item_path)
         else:
             pass  # not TeX or directory
