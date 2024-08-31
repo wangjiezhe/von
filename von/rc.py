@@ -61,6 +61,10 @@ tags: ["trivial", "easy", "medium", "hard", "brutal"]
 # abbreviations:
 #   Inter Galaxy Math Olympiad: IGMO
 #   Inter Universe Math Olympiad: IUMO
+
+# Ignored directories
+# ignores:
+#   - .git
 """
 
 if not CONFIG_DIR.exists():
@@ -140,3 +144,5 @@ VON_POST_OUTPUT_DIR = os.path.join(VON_TMP_PATH, "po_" + getpass.getuser())
 
 SEPARATOR = "\n---\n"
 NSEPARATOR = "\n" + SEPARATOR + "\n"
+
+VON_IGNORE_DIR = config["ignores"]
