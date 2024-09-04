@@ -367,9 +367,13 @@ def main(self: object, argv: list[str]):
             dest_path = os.path.join(VON_POST_OUTPUT_DIR, "tikz")
             if not os.path.exists(dest_path):
                 os.mkdir(dest_path)
+            puids = [
+                inferPUID(entry.source)
+                for key in keys
+                if (entry := model.getEntryByKey(key)) is not None
+            ]
             for file in os.listdir(tikz_path):
-                for key in keys:
-                    puid = inferPUID(key)
+                for puid in puids:
                     if file.startswith(puid) and file.endswith('tkz'):
                         shutil.copy(os.path.join(tikz_path, file), dest_path)
         os.chdir(VON_POST_OUTPUT_DIR)
