@@ -155,6 +155,7 @@ LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
 \usepackage[shortlabels]{enumitem}
 \usepackage{multirow}
 \usepackage{ellipsis}
+\usepackage{cancel}
 
 \usepackage{epic} % diagrams
 \usepackage{tikz-cd} % diagrams
@@ -374,7 +375,10 @@ def main(self: object, argv: list[str]):
             ]
             for file in os.listdir(tikz_path):
                 for puid in puids:
-                    if file.startswith(puid) and file.endswith('tkz'):
+                    if file.startswith(puid) and file.endswith("tkz"):
                         shutil.copy(os.path.join(tikz_path, file), dest_path)
         os.chdir(VON_POST_OUTPUT_DIR)
-        os.system("latexmk -pdflua -e '$pdf_previewer=q[start \"/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe\" %%O %%S]' -pv %s" % filepath)
+        os.system(
+            "latexmk -pdflua -e '$pdf_previewer=q[start \"/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe\" %%O %%S]' -pv %s"
+            % filepath
+        )
