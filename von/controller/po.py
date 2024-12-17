@@ -155,6 +155,7 @@ LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
 \usepackage[shortlabels]{enumitem}
 \usepackage{multirow}
 \usepackage{ellipsis}
+\usepackage{cancel}
 
 \usepackage{epic} % diagrams
 \usepackage{tikz-cd} % diagrams
