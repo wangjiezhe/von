@@ -207,6 +207,7 @@ path Drawing(path g, pen p = defaultpen, arrowbar ar = None) {
 \end{asydef}
 
 \usepackage{tkz-euclide}
+\usepackage{tkz-elements}
 \tikzset {
   dots/.style={shape=circle, color=#1!30!black, fill=#1!70!black, minimum size=2},
   dots/.default=black,
