@@ -287,4 +287,7 @@ def main(self: object, argv: list[str]):
         with open(filepath, "w") as f:
             print(s, file=f)
         os.chdir(VON_POST_OUTPUT_DIR)
-        os.system("latexmk -pdflua -pv %s" % filepath)
+        os.system(
+            "latexmk -pdflua -e '$pdf_previewer=q[start \"/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe\" %%O %%S]' -pv %s"
+            % filepath
+        )
