@@ -147,7 +147,7 @@ def solicit_user_for_yaml(opts: Namespace, url: str) -> None | tuple[str, Any]:
             # darn PyYAML used to do this fine -_-
             tags = d.pop("tags")
             output = (
-                yaml.dump(d, default_flow_style=False).strip()
+                yaml.dump(d, default_flow_style=False, allow_unicode=True).strip()
                 + "\n"
                 + "tags: ["
                 + ", ".join(tags)
