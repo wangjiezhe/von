@@ -150,6 +150,8 @@ LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
 \newtheorem*{exercise*}{练习}
 \newtheorem*{problem*}{题目}
 
+\defcaptionname{english}{\figurename}{图}
+
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage[shortlabels]{enumitem}
