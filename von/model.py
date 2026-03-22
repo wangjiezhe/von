@@ -21,7 +21,7 @@ from .rc import (  # NOQA
 )
 
 OTIS_USED_SOURCES_LIST: list[str] | None
-if OTIS_EVIL_JSON_PATH is not None:  # type: ignore
+if OTIS_EVIL_JSON_PATH is not None:
     with open(OTIS_EVIL_JSON_PATH) as f:
         evil_json = json.load(f)
         OTIS_HANDOUT_USED_SOURCES = evil_json.values()
@@ -60,7 +60,7 @@ class pickleObj(collections.abc.MutableMapping):
     def __exit__(self, *_: Any):
         if self.mode == "wb":
             with vonOpen(self.path, "wb") as f:
-                pickle.dump(self.store, f)  # type: ignore
+                pickle.dump(self.store, f)
 
     def __getitem__(self, key: Any):
         try:
@@ -210,7 +210,7 @@ class Problem(GenericItem):
 
     @property
     def full(self) -> "Problem":
-        logging.warn("Sketchy af")
+        logging.warning("Sketchy af")
         return self
 
 
