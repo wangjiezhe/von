@@ -15,7 +15,7 @@ authors = [{ name = "Evan Chen", email = "evan@evanchen.cc" }]
 license = { text = "MPL-2.0" }
 readme = "README.md"
 urls = { repository = "https://github.com/vEnhance/von/" }
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.11,<4.0"
 dependencies = [
     "pyperclip>=1.9.0",
     "PyYAML>=6.0.2",
