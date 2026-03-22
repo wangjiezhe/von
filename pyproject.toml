@@ -29,7 +29,7 @@ von = "von.__main__:main"
 
 [dependency-groups]
 dev = [
-    "prek>=0.2.25",
+    "prek>=0.3.6",
     "pytest>=9.0.2",
     "codespell>=2.4.1",
     "pyright>=1.1.394",
