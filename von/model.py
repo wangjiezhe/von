@@ -22,7 +22,7 @@ from .rc import (  # NOQA
 )
 
 OTIS_USED_SOURCES_LIST: list[str] | None
-if OTIS_EVIL_JSON_PATH is not None:  # type: ignore
+if OTIS_EVIL_JSON_PATH is not None:
     with open(OTIS_EVIL_JSON_PATH) as f:
         evil_json = json.load(f)
         OTIS_HANDOUT_USED_SOURCES = evil_json.values()
@@ -61,7 +61,7 @@ class pickleObj(collections.abc.MutableMapping):
     def __exit__(self, *_: Any):
         if self.mode == "wb":
             with vonOpen(self.path, "wb") as f:
-                pickle.dump(self.store, f)  # type: ignore
+                pickle.dump(self.store, f)
 
     def __getitem__(self, key: Any):
         try:
@@ -105,9 +105,7 @@ class pickleDictVonIndex(pickleObj):
 
 class pickleListVonCache(pickleObj):
     store: list["PickleMappingEntry"]
-
-    def __getitem__(self, idx: int) -> "PickleMappingEntry":
-        return super().__getitem__(idx)
+    __getitem__: Callable[[int], "PickleMappingEntry"]
 
     def _initial(self) -> list["PickleMappingEntry"]:
         return []
@@ -173,7 +171,9 @@ class GenericItem:  # superclass to Problem, PickleMappingEntry
         else:
             return False
 
-    def __eq__(self, other: "GenericItem") -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, GenericItem):
+            return False
         return self.sortkey == other.sortkey
 
     def __lt__(self, other: "GenericItem") -> bool:
@@ -211,7 +211,7 @@ class Problem(GenericItem):
 
     @property
     def full(self) -> "Problem":
-        logging.warn("Sketchy af")
+        logging.warning("Sketchy af")
         return self
 
 
@@ -253,7 +253,7 @@ class PickleMappingEntry(GenericItem):
 
     @property
     def entry(self):
-        logging.warn("sketchy af")
+        logging.warning("sketchy af")
         return self
 
     @property

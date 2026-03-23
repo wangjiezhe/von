@@ -104,7 +104,7 @@ OPTS = _view_parser.parse_args([])
 
 class Parser(argparse.ArgumentParser):
     def __init__(self, *args: Any, **kwargs: Any):
-        super(Parser, self).__init__(parents=[_view_parser], *args, **kwargs)  # type: ignore
+        super(Parser, self).__init__(parents=[_view_parser], *args, **kwargs)
 
     def process(self, *args: Any, **kwargs: Any) -> argparse.Namespace:
         global OPTS
@@ -156,7 +156,7 @@ def getEntryString(entry: PickleMappingEntry, verbose=False, i: int | None = Non
     if verbose or len(entry.source) <= 16:
         source_string: str = entry.source
     else:
-        words_in_source: list[str] = entry.source.split(" ")
+        words_in_source = entry.source.split(" ")
         source_string = ""
         for word in words_in_source:
             if word == "Shortlist":

@@ -29,14 +29,20 @@ Here are a few hints. Pull requests to improve this documentation are welcome.
 
 ## Installation
 
-1. Run `pip install vondb` (note the package name on PyPI is `vondb` and not `von`;
+1. Install `vondb` from PyPI (note the package name is `vondb` and not `von`;
    but the command and module are named `von`).
-   (Here is the [PyPI listing](https://pypi.org/project/vondb/).)
-   Or if you're on Arch Linux, install from [python-vondb in AUR](https://aur.archlinux.org/packages/python-vondb).
+   Here is the [PyPI listing](https://pypi.org/project/vondb/).
+   - If you're unfamiliar with how to do this, I suggest using [uv][uv]:
+     you can do `uv tool install vondb`.
+   - Or `pip install vondb` works too, if you want to use Pip directly.
+     (But I think `uv` is better.)
+   - If you're on Arch Linux, you can also install from
+     [python-vondb in AUR](https://aur.archlinux.org/packages/python-vondb).
+
 2. When first run, the program will (try to) create a configuration file
    `~/.config/von/config` or similar if it does not exist.
    You should then edit that file and choose some values.
-   The program will be unlikely to work correctly
+   The program won't work correctly
    until after you have chosen e.g. the `base_path` parameter.
 3. Optional LaTeX integration uses [von.sty][vonsty] and PythonTeX.
    The optional previewer requires [evan.sty][evansty]. (See below for details.)
@@ -44,6 +50,8 @@ Here are a few hints. Pull requests to improve this documentation are welcome.
    (I recommend [TeX Live][texlive]).
 4. If fuzzy searching is desired (optional),
    install [fzf](https://github.com/junegunn/fzf).
+
+[uv]: https://docs.astral.sh/uv/
 
 ## Help
 
@@ -58,7 +66,7 @@ To exit VON, type an EOF character (usually Ctrl-D).
 
 1. Problems are stored in TeX files in `VON_BASE_PATH`. You can
    keep subdirectories in here, as well, to organize those files.
-2. Problems and solutions are separated using `SEPARATOR` in `rc.py`,
+2. Problems and solutions are separated using `SEPARATOR` in `config`,
    which by default is three dashes padded by newlines.
    So when entering new problems, write the statement, the separator,
    and then the solution.
@@ -68,14 +76,14 @@ To exit VON, type an EOF character (usually Ctrl-D).
    and the 1'st body is the solution,
    but you can have further bodies for other purposes too.
 
-## Meta-data
+## Metadata
 
 - `edit "Shortlist 2016 G2"` or `edit "16SLG2"`: edit entry for problem in database
 
-1. Meta-data is stored at the top of each file after being added.
+1. Metadata is stored at the top of each file after being added.
 2. Problems must have a _source_ like "Shortlist 2016 G2".
 3. Problems should also have a description, and a set of tags.
-   If a tag is specified as a sorting tag in `rc.py`,
+   If a tag is specified as a sorting tag in `config`,
    it will be displayed differently,
    but otherwise functionally equivalently.
 4. Problems can also have an "author" attribute, which is displayed.
@@ -147,8 +155,8 @@ Use `show --help` and `po --help` for more details.
 
 Sometimes the list of problems and file paths might become
 messed up in some way (for example, if you move a file).
-To fix this run `von nuke` to recompile the entire index.
-`von nuke` is also useful in the cases of deleting a file
+To fix this run `von build` to recompile the entire index.
+`von build` is also useful in the cases of deleting a file
 and thus problem from the index.
 
 ## Preview
