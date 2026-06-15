@@ -208,6 +208,8 @@ path Drawing(path g, pen p = defaultpen, arrowbar ar = None) {
 }
 \end{asydef}
 
+\usepackage{luacode}
+\usepackage{tkz-fct}
 \usepackage{tkz-euclide}
 \usepackage{tkz-elements}
 \tikzset {
