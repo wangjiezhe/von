@@ -95,12 +95,13 @@ To exit VON, type an EOF character (usually Ctrl-D).
    but will be replaced by placeholders (unless `--brave` is passed).
 
    There are two ways to mark a problem as SECRET:
+
    - Include `SECRET` as a substring of the problem's source.
    - Include `secret` as one of the problem's tags.
 
 An example of an entry:
 
-```
+```text
 desc:  $5^n$ has six consecutive zeros
 author: Evan Chen
 source:  JMO 2016/2
