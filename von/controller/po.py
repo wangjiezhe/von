@@ -38,6 +38,7 @@ parser.add_argument(
 )
 
 LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
+\usepackage[fontset=founder]{ctex}
 \usepackage[minimal]{yhmath}
 \usepackage{derivative}
 
@@ -123,37 +124,39 @@ LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
   bodyfont=\normalfont,
 }
 
-\newkeytheorem{theorem}[style=thmbluebox,name=Theorem,parent=section]
-\newkeytheorem{theorem*}[style=thmbluebox,name=Theorem,numbered=no]
-\newkeytheorem{algorithm*}[style=thmgreenbox,name=Algorithm,numbered=no]
-\newkeytheorem{algorithm}[style=thmgreenbox,name=Algorithm,sibling=theorem]
-\newkeytheorem{claim*}[style=thmgreenbox,name=Claim,numbered=no]
-\newkeytheorem{claim}[style=thmgreenbox,name=Claim,sibling=theorem]
-\newkeytheorem{corollary*}[style=thmbluebox,name=Corollary,numbered=no]
-\newkeytheorem{corollary}[style=thmbluebox,name=Corollary,sibling=theorem]
-\newkeytheorem{example*}[style=thmredbox,name=Example,numbered=no]
-\newkeytheorem{example}[style=thmredbox,name=Example,sibling=theorem]
-\newkeytheorem{lemma*}[style=thmbluebox,name=Lemma,numbered=no]
-\newkeytheorem{lemma}[style=thmbluebox,name=Lemma,sibling=theorem]
-\newkeytheorem{proposition*}[style=thmbluebox,name=Proposition,numbered=no]
-\newkeytheorem{proposition}[style=thmbluebox,name=Proposition,sibling=theorem]
-\newkeytheorem{remark*}[style=thmblackbox,name=Remark,numbered=no]
-\newkeytheorem{remark}[style=thmblackbox,name=Remark,sibling=theorem]
+\newkeytheorem{theorem}[style=thmbluebox,name=定理,parent=section]
+\newkeytheorem{theorem*}[style=thmbluebox,name=定理,numbered=no]
+\newkeytheorem{algorithm*}[style=thmgreenbox,name=算法,numbered=no]
+\newkeytheorem{algorithm}[style=thmgreenbox,name=算法,sibling=theorem]
+\newkeytheorem{claim*}[style=thmgreenbox,name=结论,numbered=no]
+\newkeytheorem{claim}[style=thmgreenbox,name=结论,sibling=theorem]
+\newkeytheorem{corollary*}[style=thmbluebox,name=推论,numbered=no]
+\newkeytheorem{corollary}[style=thmbluebox,name=推论,sibling=theorem]
+\newkeytheorem{example*}[style=thmredbox,name=例子,numbered=no]
+\newkeytheorem{example}[style=thmredbox,name=例子,sibling=theorem]
+\newkeytheorem{lemma*}[style=thmbluebox,name=引理,numbered=no]
+\newkeytheorem{lemma}[style=thmbluebox,name=引理,sibling=theorem]
+\newkeytheorem{proposition*}[style=thmbluebox,name=命题,numbered=no]
+\newkeytheorem{proposition}[style=thmbluebox,name=命题,sibling=theorem]
+\newkeytheorem{remark*}[style=thmblackbox,name=备注,numbered=no]
+\newkeytheorem{remark}[style=thmblackbox,name=备注,sibling=theorem]
 \theoremstyle{definition}
-\newtheorem*{answer*}{Answer}
-\newtheorem*{conjecture*}{Conjecture}
-\newtheorem*{definition*}{Definition}
-\newtheorem*{exercise*}{Exercise}
-\newtheorem*{fact*}{Fact}
-\newtheorem*{problem*}{Problem}
-\newtheorem*{ques*}{Question}
-\newtheorem{answer}[theorem]{Answer}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{fact}[theorem]{Fact}
-\newtheorem{problem}[theorem]{Problem}
-\newtheorem{ques}[theorem]{Question}
+\newtheorem*{answer*}{答案}
+\newtheorem*{conjecture*}{猜想}
+\newtheorem*{definition*}{定义}
+\newtheorem*{exercise*}{练习}
+\newtheorem*{fact*}{事实}
+\newtheorem*{problem*}{题目}
+\newtheorem*{ques*}{问题}
+\newtheorem{answer}[theorem]{答案}
+\newtheorem{conjecture}[theorem]{猜想}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{exercise}[theorem]{练习}
+\newtheorem{fact}[theorem]{事实}
+\newtheorem{problem}[theorem]{题目}
+\newtheorem{ques}[theorem]{问题}
+
+\defcaptionname{english}{\figurename}{图}
 
 \usepackage{mathtools}
 \usepackage{hyperref}
@@ -311,8 +314,8 @@ def default_title(keys: list[str]) -> str:
         entry = model.getEntryByKey(keys[0])
         if entry is not None:
             return entry.source
-        return "Solution"
-    return "Solutions"
+        return "解答"
+    return "解答"
 
 
 def render(keys: list[str], opts: Namespace) -> str | None:
@@ -346,7 +349,7 @@ def render(keys: list[str], opts: Namespace) -> str | None:
             s += strparse.demacro(problem.bodies[0]) + "\n"
             s += r"\end{problem}" if len(keys) > 1 else r"\end{problem*}"
             if entry.url:
-                s += r"\noindent\emph{Link}: \url{" + entry.url + "}" + "\n"
+                s += r"\noindent\emph{链接}: \url{" + entry.url + "}" + "\n"
             if len(problem.bodies) > 1:
                 s += "\n" + r"\hrulebar" + "\n\n"
                 s += strparse.demacro(problem.bodies[1]) + "\n"
