@@ -1,10 +1,12 @@
 import logging
 import os
+import shutil
 import subprocess
 from argparse import Namespace
 
 from .. import model, strparse, view
 from ..fzf import fzf_choose
+from ..puid import inferPUID
 from ..rc import config
 
 parser = view.Parser(prog="po", description="Prepares a LaTeX file to send to Po-Shen!")
@@ -382,6 +384,20 @@ def main(argv: list[str]):
         filepath = os.path.join(output_dir, f"{fname}.tex")
         with open(filepath, "w") as f:
             print(s, file=f)
+        tikz_path = os.path.join(config().base_path, "tikz")
+        if os.path.exists(tikz_path):
+            dest_path = os.path.join(output_dir, "tikz")
+            if not os.path.exists(dest_path):
+                os.mkdir(dest_path)
+            puids = [
+                inferPUID(entry.source)
+                for key in keys
+                if (entry := model.getEntryByKey(key)) is not None
+            ]
+            for file in os.listdir(tikz_path):
+                for puid in puids:
+                    if file.startswith(puid) and file.endswith("tkz"):
+                        shutil.copy(os.path.join(tikz_path, file), dest_path)
         os.chdir(output_dir)
         subprocess.run(
             [
