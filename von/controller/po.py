@@ -41,7 +41,7 @@ LATEX_PREAMBLE = r"""\usepackage{amsmath,amssymb,amsthm}
 \usepackage[minimal]{yhmath}
 \usepackage{derivative}
 
-\PassOptionsToPackage{usenames,svgnames,dvipsnames}{xcolor}
+\PassOptionsToPackage{svgnames,dvipsnames}{xcolor}
 \usepackage{listings}
 
 \usepackage{keytheorems}
