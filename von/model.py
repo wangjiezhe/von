@@ -295,7 +295,8 @@ def makeProblemFromPath(path: str) -> Problem:
 
 def getAllProblems() -> list[Problem]:
     ret: list[Problem] = []
-    for root, _, filenames in os.walk(config().base_path):
+    for root, dirs, filenames in os.walk(config().base_path, topdown=True):
+        dirs[:] = [d for d in dirs if d not in config().ignores]
         for fname in filenames:
             if not fname.endswith(".tex"):
                 continue
@@ -363,7 +364,7 @@ def viewDirectory(path: str):
             problem = makeProblemFromPath(abs_item_path)
             assert problem is not None
             problems.append(problem)
-        elif os.path.isdir(abs_item_path):
+        elif os.path.isdir(abs_item_path) and item_path not in config().ignores:
             dirs.append(item_path)
         else:
             pass  # not TeX or directory

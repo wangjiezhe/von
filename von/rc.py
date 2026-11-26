@@ -86,6 +86,10 @@ tags: ["trivial", "easy", "medium", "hard", "brutal"]
 # abbreviations:
 #   Inter Galaxy Math Olympiad: IGMO
 #   Inter Universe Math Olympiad: IUMO
+
+# Ignored directories
+# ignores:
+#   - .git
 """
 
 
@@ -103,6 +107,7 @@ class Config:
     os: OSName = field(default_factory=detect_os)
     abbreviations: dict[str, str] = field(default_factory=dict)
     tmp_path: str = field(default_factory=tempfile.gettempdir)
+    ignores: list[str] = field(default_factory=list)
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "Config":
@@ -130,6 +135,8 @@ class Config:
             kwargs["abbreviations"] = data["abbreviations"]
         if tmp_path := data.get("von_tmp_path"):
             kwargs["tmp_path"] = str(Path(tmp_path).expanduser())
+        if data.get("ignores"):
+            kwargs["ignores"] = data["ignores"]
         return cls(**kwargs)
 
     @property
