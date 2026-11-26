@@ -302,4 +302,13 @@ def main(argv: list[str]):
         with open(filepath, "w") as f:
             print(s, file=f)
         os.chdir(output_dir)
-        subprocess.run(["latexmk", "-pv", filepath])
+        subprocess.run(
+            [
+                "latexmk",
+                "-pdflua",
+                "-e",
+                "'$pdf_previewer=q[start \"/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe\" %%O %%S]'",
+                "-pv",
+                filepath,
+            ]
+        )
