@@ -251,8 +251,8 @@ class TestWorkFunctions:
         assert r"\title{Hi}" in tex
         assert "\\begin{problem}[IMO 2005/3]\nStatement.\n\\end{problem}" in tex
         assert po.default_title(["IMO 2005/3"]) == "IMO 2005/3"
-        assert po.default_title(["nope"]) == "Solution"
-        assert po.default_title(["a", "b"]) == "Solutions"
+        assert po.default_title(["nope"]) == "解答"
+        assert po.default_title(["a", "b"]) == "解答"
 
     def test_solve_render(self, db: Path):
         opts = solve.parser.parse_args(["unused.tex", "--lazy", "--pagebreaks"])
